@@ -13,7 +13,7 @@ class _WeekListState extends State<WeekList> {
 //    super.initState();
 //  }
 
-  final workouts = <Week>[
+  final week = <Week>[
     Week(
         title: 'Test1',
         author: 'Max1',
@@ -43,9 +43,9 @@ class _WeekListState extends State<WeekList> {
 
   @override
   Widget build(BuildContext context) {
-    var workoutsList = Expanded(
+    var weekList = Expanded(
       child: ListView.builder(
-          itemCount: workouts.length,
+          itemCount: week.length,
           itemBuilder: (context, i) {
             return Card(
               shape: RoundedRectangleBorder(
@@ -79,7 +79,7 @@ class _WeekListState extends State<WeekList> {
 
     return Column(
       children: <Widget>[
-        workoutsList,
+        weekList,
       ],
     );
   }
