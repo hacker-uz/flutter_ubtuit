@@ -48,140 +48,30 @@ class _WeekListState extends State<WeekList> {
           itemBuilder: (context, i) {
             return Container(
                 child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              elevation: 5.0,
-              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(
-                            child: Container(
-                              child: RichText(
-                                text: TextSpan(
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                  children: [
-                                    WidgetSpan(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5.0),
-                                        child: Icon(Icons.subject),
-                                      ),
-                                    ),
-                                    WidgetSpan(
-                                        child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 2.0),
-                                      child: Text(week[i].subject,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 25)),
-                                    ))
-                                  ],
-                                ),
-                              ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    elevation: 5.0,
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                    child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Stack(children: <Widget>[
+                          Align(
                               alignment: Alignment.center,
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              border: Border(
-                                  bottom: BorderSide(
-                                      width: 2.0, color: Colors.blue)),
-                            )),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Container(
-                        child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 5),
-                            child: Icon(Icons.person)),
-                        alignment: Alignment.center,
-                      ),
-                      Text(week[i].teacher)
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Expanded(
-                          child: Column(
-                        children: <Widget>[
-                          Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
-                              child: RichText(
-                                text: TextSpan(
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                  children: [
-                                    WidgetSpan(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5.0),
-                                        child: Icon(Icons.room),
-                                      ),
-                                    ),
-                                    WidgetSpan(
-                                        child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 2.0),
-                                      child: Text(week[i].room.toString(),
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20)),
-                                    ))
-                                  ],
-                                ),
-                              )),
-                        ],
-                      )),
-                      Expanded(
-                          child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
-                              child: RichText(
-                                text: TextSpan(
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                  children: [
-                                    WidgetSpan(
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5.0),
-                                        child: Icon(Icons.access_time),
-                                      ),
-                                    ),
-                                    WidgetSpan(
-                                        child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 2.0),
-                                      child: Text(week[i].time,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20)),
-                                    ))
-                                  ],
-                                ),
-                              )),
-                        ],
-                      ))
-                    ],
-                  )
-                ],
-              ),
-            ));
+                              child: Stack(children: <Widget>[
+                                Column(children: <Widget>[
+                                  Row(
+                                    children: <Widget>[subject(i)],
+                                  ),
+                                  Row(
+                                    children: <Widget>[teacher(i)],
+                                  ),
+                                  Row(
+                                    children: <Widget>[room(i), time(i)],
+                                  )
+                                ]),
+                              ]))
+                        ]))));
           }),
     );
 
@@ -191,4 +81,134 @@ class _WeekListState extends State<WeekList> {
       ],
     );
   }
+
+  Widget subject(i) {
+    return Expanded(
+      child: Container(
+        alignment: Alignment.center,
+        child: RichText(
+          text: TextSpan(
+            style: Theme.of(context).textTheme.bodyText2,
+            children: [
+              WidgetSpan(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  child: Icon(Icons.subject),
+                ),
+              ),
+              WidgetSpan(
+                  child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                child: Text(week[i].subject,
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+              ))
+            ],
+          ),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          border: Border(bottom: BorderSide(width: 2.0, color: Theme.of(context).primaryColor)),
+        ),
+      ),
+    );
+  }
+
+  Widget teacher(i) {
+    return Expanded(
+        child: Container(
+            alignment: Alignment.center,
+            child: RichText(
+              text: TextSpan(
+                style: Theme.of(context).textTheme.bodyText2,
+                children: [
+                  WidgetSpan(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 5),
+                      child: Icon(Icons.person),
+                    ),
+                  ),
+                  WidgetSpan(
+                      child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    child: Text(week[i].teacher,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20)),
+                  ))
+                ],
+              ),
+            )));
+  }
+
+  Widget room(i) {
+    return Expanded(
+        child: Container(
+            alignment: Alignment.bottomLeft,
+            child: Column(children: <Widget>[
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: RichText(
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodyText2,
+                      children: [
+                        WidgetSpan(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 5.0),
+                            child: Icon(Icons.room),
+                          ),
+                        ),
+                        WidgetSpan(
+                            child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                          child: Text(week[i].room.toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20)),
+                        ))
+                      ],
+                    ),
+                  ))
+            ])));
+  }
+
+  Widget time(i) {
+    return Expanded(
+        child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              border: Border(left: BorderSide(width: 2.0, color: Theme.of(context).primaryColor)),
+            ),
+            alignment: Alignment.bottomRight,
+            child: Column(children: <Widget>[
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: RichText(
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.bodyText2,
+                      children: [
+                        WidgetSpan(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 5),
+                            child: Icon(Icons.access_time),
+                          ),
+                        ),
+                        WidgetSpan(
+                            child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: Text(week[i].time,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20)),
+                        ))
+                      ],
+                    ),
+                  ))
+            ])));
+  }
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:flutter/services.dart';
 
 import 'data/week_list_ui.dart';
 
@@ -12,6 +13,11 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Color.fromRGBO(5, 145, 252, 0.6), //or set color with: Color(0xFF0000FF)
+    ));
+
     return SafeArea(
         child: Scaffold(
       appBar: new AppBar(
@@ -139,7 +145,7 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: new ThemeData(
-        primaryColor: Colors.lightBlue,
+        primaryColor: Colors.blue,
       ),
       home: MyHomePage(title: "TUIT UB"),
     );
