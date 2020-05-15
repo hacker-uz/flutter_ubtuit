@@ -15,30 +15,29 @@ class _WeekListState extends State<WeekList> {
 
   final week = <Week>[
     Week(
-        title: 'Test1',
-        author: 'Max1',
-        description: 'Test Workout1',
-        level: 'Beginner'),
+        subject: "Java",
+        teacher: "Abrorov R.",
+        sub_type: "Praktika",
+        room: 325,
+        time: "8:30-9:50"),
     Week(
-        title: 'Test2',
-        author: 'Max2',
-        description: 'Test Workout2',
-        level: 'Intermediate'),
+        subject: "C++",
+        teacher: "Aliev O.",
+        sub_type: "Maruza",
+        room: 315,
+        time: "9:50-11:20"),
     Week(
-        title: 'Test3',
-        author: 'Max3',
-        description: 'Test Workout3',
-        level: 'Advanced'),
+        subject: "Web",
+        teacher: "Artikov M.",
+        sub_type: "Praktika",
+        room: 311,
+        time: "8:30-9:50"),
     Week(
-        title: 'Test4',
-        author: 'Max4',
-        description: 'Test Workout4',
-        level: 'Beginner'),
-    Week(
-        title: 'Test5',
-        author: 'Max5',
-        description: 'Test Workout5',
-        level: 'Intermediate'),
+        subject: "MySQL",
+        teacher: "Marks",
+        sub_type: "Praktika",
+        room: 325,
+        time: "8:30-9:50"),
   ];
 
   @override
@@ -47,33 +46,142 @@ class _WeekListState extends State<WeekList> {
       child: ListView.builder(
           itemCount: week.length,
           itemBuilder: (context, i) {
-            return Card(
+            return Container(
+                child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
-              elevation: 2.0,
+              elevation: 5.0,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Container(
-                          child: Text("Subject"),
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            border: Border(
-                                bottom: BorderSide(width: 2.0, color: Colors.blue)),
-                          )),
+                      Expanded(
+                        child: Container(
+                            child: Container(
+                              child: RichText(
+                                text: TextSpan(
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                  children: [
+                                    WidgetSpan(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5.0),
+                                        child: Icon(Icons.subject),
+                                      ),
+                                    ),
+                                    WidgetSpan(
+                                        child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 2.0),
+                                      child: Text(week[i].subject,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 25)),
+                                    ))
+                                  ],
+                                ),
+                              ),
+                              alignment: Alignment.center,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              border: Border(
+                                  bottom: BorderSide(
+                                      width: 2.0, color: Colors.blue)),
+                            )),
+                      ),
                     ],
                   ),
                   Row(
-                    children: <Widget>[Text("aaa")],
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+                        child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 5),
+                            child: Icon(Icons.person)),
+                        alignment: Alignment.center,
+                      ),
+                      Text(week[i].teacher)
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Expanded(
+                          child: Column(
+                        children: <Widget>[
+                          Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: RichText(
+                                text: TextSpan(
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                  children: [
+                                    WidgetSpan(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5.0),
+                                        child: Icon(Icons.room),
+                                      ),
+                                    ),
+                                    WidgetSpan(
+                                        child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 2.0),
+                                      child: Text(week[i].room.toString(),
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20)),
+                                    ))
+                                  ],
+                                ),
+                              )),
+                        ],
+                      )),
+                      Expanded(
+                          child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: RichText(
+                                text: TextSpan(
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                  children: [
+                                    WidgetSpan(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5.0),
+                                        child: Icon(Icons.access_time),
+                                      ),
+                                    ),
+                                    WidgetSpan(
+                                        child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 2.0),
+                                      child: Text(week[i].time,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20)),
+                                    ))
+                                  ],
+                                ),
+                              )),
+                        ],
+                      ))
+                    ],
                   )
                 ],
               ),
-            );
+            ));
           }),
     );
 
@@ -83,40 +191,4 @@ class _WeekListState extends State<WeekList> {
       ],
     );
   }
-}
-
-Widget subtitle(BuildContext context, Week week) {
-  var color = Colors.grey;
-  double indicatorLevel = 0;
-
-  switch (week.level) {
-    case 'Beginner':
-      color = Colors.green;
-      indicatorLevel = 0.33;
-      break;
-    case 'Intermediate':
-      color = Colors.yellow;
-      indicatorLevel = 0.66;
-      break;
-    case 'Advanced':
-      color = Colors.red;
-      indicatorLevel = 1;
-      break;
-  }
-
-  return Row(
-    children: <Widget>[
-      Expanded(
-          flex: 1,
-          child: LinearProgressIndicator(
-              backgroundColor: Theme.of(context).textTheme.headline6.color,
-              value: indicatorLevel,
-              valueColor: AlwaysStoppedAnimation(color))),
-      SizedBox(width: 10),
-      Expanded(
-          flex: 3,
-          child: Text(week.level,
-              style: TextStyle(color: Theme.of(context).textTheme.title.color)))
-    ],
-  );
 }
